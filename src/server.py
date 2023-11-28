@@ -1,7 +1,5 @@
 from contextlib import asynccontextmanager
-
 from fastapi import FastAPI
-
 from src.config.database import create_db_and_tables
 from src.routes.reservas_routes import reservas_router
 from src.routes.voos_routes import voos_router

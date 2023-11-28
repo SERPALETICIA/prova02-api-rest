@@ -1,5 +1,4 @@
 from contextlib import contextmanager
-
 from sqlmodel import Session, SQLModel, create_engine
 
 # CONFIGURAÇÕES DA CONEXAO COM O BANCO DE DADOS

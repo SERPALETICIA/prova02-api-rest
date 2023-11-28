@@ -19,4 +19,4 @@ class Voo(SQLModel, table=True):
     poltrona_7: str = Field(default=None)
     poltrona_8: str = Field(default=None)
     poltrona_9: str = Field(default=None)
-    reservas: List["Reserva"] = Relationship(back_populates="voos")
+    reservas: List["reservas"] = Relationship(back_populates="voos")
