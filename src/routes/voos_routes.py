@@ -1,9 +1,7 @@
 from datetime import datetime, timedelta
-
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
 from sqlmodel import select
-
 from src.config.database import get_session
 from src.models.voos_model import Voo
 
@@ -47,5 +45,20 @@ def lista_voos():
         statement = select(Voo)
         voo = session.exec(statement).all()
         return voo
+    
+@voos_router.get("/{voo_id}/poltronas")
+def poltronas_por_voo(voo_id: int = Query(..., title="ID do Voo", description="ID do voo para obter as poltronas")):
+    with get_session() as session:
+        # Verifica se o voo existe
+        voo = session.get(Voo, voo_id)
+        if voo is None:
+            return JSONResponse(
+                content={"message": "Voo não encontrado"},
+                status_code=404,
+            )
 
+        # Obtém as poltronas para o voo específico
+        poltronas = voo.poltronas  # Substitua 'poltronas' pelo nome correto do relacionamento na sua classe de modelo
+
+        return {"voo_id": voo_id, "poltronas": poltronas}
 # TODO - Implementar rota que retorne as poltronas por id do voo

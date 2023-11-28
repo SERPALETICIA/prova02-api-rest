@@ -91,5 +91,4 @@ def faz_checkin(codigo_reserva: str, num_poltrona: int):
         session.commit()
 
         return {"message": "Check-in realizado com sucesso."}
-    # TODO - Implementar reserva de poltrona
     pass
